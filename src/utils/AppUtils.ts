@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import { GroupLocator, TeamsMeetingLinkLocator } from '@azure/communication-calling';
 
 import { v1 as generateGUID } from 'uuid';
@@ -8,13 +5,13 @@ import { v1 as generateGUID } from 'uuid';
 export const fetchTokenResponse = async (): Promise<any> => {
   const response = await fetch('/token?scope=voip');
   if (response.ok) {
-    const responseAsJson = await response.json(); //(await response.json())?.value?.token;
+    const responseAsJson = await response.json(); 
     const token = responseAsJson.token;
     if (token) {
       return responseAsJson;
     }
   }
-  throw new Error('Invalid token response');
+  throw new Error('Invalid token response aqui o error');
 };
 
 /**
