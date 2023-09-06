@@ -1,17 +1,17 @@
 
-import React from 'react'
+// import React from 'react'
 
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 
-const DynamicComponentWithNoSSR = dynamic(
-  () => import('@/components/App'),
-  { ssr: false }
-)
+// const DynamicComponentWithNoSSR = dynamic(
+//   () => import('@/components/App'),
+//   { ssr: false }
+// )
 
-const VideoPage = () => {
-  return (
-    <DynamicComponentWithNoSSR />
-  )
-}
+// const VideoPage = () => {
+//   return (
+//     <DynamicComponentWithNoSSR />
+//   )
+// }
 
-export default VideoPage
+// export default VideoPage

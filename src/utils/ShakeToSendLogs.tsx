@@ -86,7 +86,7 @@ const sendLogs = async (): Promise<string | false> => {
   const logs = getRecordedLogs();
 
   const containerName = 'calling-sample-logs';
-  const response = await fetch(`/uploadToAzureBlobStorage`, {
+  const response = await fetch(`http://localhost:8080/uploadToAzureBlobStorage`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

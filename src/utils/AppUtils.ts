@@ -3,7 +3,7 @@ import { GroupLocator, TeamsMeetingLinkLocator } from '@azure/communication-call
 import { v1 as generateGUID } from 'uuid';
 
 export const fetchTokenResponse = async (): Promise<any> => {
-  const response = await fetch('/token?scope=voip');
+  const response = await fetch('http://localhost:8080/token?scope=voip');
   if (response.ok) {
     const responseAsJson = await response.json(); 
     const token = responseAsJson.token;
