@@ -17,9 +17,9 @@ import {
 
 import { useIsMobile } from '../utils/useIsMobile';
 import { useSecondaryInstanceCheck } from '../utils/useSecondaryInstanceCheck';
-import { CallError } from '../components/CallError';
+import { CallError } from './CallError/CallError';
 import { CallScreen } from '../components/CallScreen';
-import { HomeScreen } from '../components/HomeScreen';
+import { HomeScreen } from './HomeScreen/HomeScreen';
 import { PageOpenInAnotherTab } from '../components/PageOpenInAnotherTab';
 import { UnsupportedBrowserPage } from '../components/UnsupportedBrowserPage';
 
@@ -109,8 +109,8 @@ const App = (): JSX.Element => {
         document.title = `error - ${WEB_APP_TITLE}`;
         return (
           <CallError
-            title="Error getting user credentials from server"
-            reason="Ensure the sample server is running."
+            title="Erro ao obter credenciais de usuário no servidor"
+            reason="Certifique-se de que o servidor de amostra esteja em execução."
             rejoinHandler={() => setPage('call')}
             homeHandler={navigateToHomePage}
           />

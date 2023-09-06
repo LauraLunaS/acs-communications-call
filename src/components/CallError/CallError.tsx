@@ -14,7 +14,8 @@ import {
   upperStackTokens,
   videoCameraIconStyle,
   bottomStackFooterStyle
-} from '../styles/EndCall.styles';
+} from '../../styles/EndCall.styles';
+import { ContainerText, ContainerButton, Subtitle } from './style'
 
 export interface CallErrorProps {
   title: string;
@@ -24,8 +25,8 @@ export interface CallErrorProps {
 }
 
 export const CallError = (props: CallErrorProps): JSX.Element => {
-  const goHomePage = 'Go to Homepage';
-  const rejoinCall = 'Retry Call';
+  const goHomePage = 'Voltar para home';
+  const rejoinCall = 'Tentar novamente';
 
   return (
     <Stack
@@ -37,18 +38,21 @@ export const CallError = (props: CallErrorProps): JSX.Element => {
       className={endCallContainerStyle}
     >
       <Stack tokens={upperStackTokens}>
-        <Text role={'heading'} aria-level={1} className={endCallTitleStyle}>
-          {props.title}
-        </Text>
+        <ContainerText>
+          <Text role={'heading'} aria-level={1} className='endCallTitleStyle'>
+            {props.title}
+          </Text>
+        </ContainerText>
         <Stack horizontal tokens={buttonsStackTokens}>
-          <PrimaryButton
-            className={buttonStyle}
-            styles={buttonWithIconStyles}
-            text={rejoinCall}
-            onClick={props.rejoinHandler}
-            onRenderIcon={() => <Video20Filled className={videoCameraIconStyle} primaryFill="currentColor" />}
-          />
-
+          <ContainerButton>
+            <PrimaryButton
+              className='buttonStyle'
+              styles={buttonWithIconStyles}
+              text={rejoinCall}
+              onClick={props.rejoinHandler}
+              onRenderIcon={() => <Video20Filled className={videoCameraIconStyle} primaryFill="currentColor" />}
+            />
+          </ContainerButton>
           <DefaultButton
             className={buttonStyle}
             styles={buttonWithIconStyles}
@@ -56,7 +60,7 @@ export const CallError = (props: CallErrorProps): JSX.Element => {
             onClick={props.homeHandler}
           />
         </Stack>
-        <div className={bottomStackFooterStyle}>{props.reason}</div>
+        <Subtitle className='bottomStackFooterStyle'>{props.reason}</Subtitle>
       </Stack>
     </Stack>
   );

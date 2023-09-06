@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
+/* eslint-disable */
 
 import React, { useState } from 'react';
-import { Stack, PrimaryButton, Image, ChoiceGroup, IChoiceGroupOption, Text, TextField } from '@fluentui/react';
-
-// import heroSVG from '../../assets/hero.svg';
+import { Stack, PrimaryButton, ChoiceGroup, IChoiceGroupOption, Text, TextField } from '@fluentui/react';
+import Image from 'next/image';
+import logo from '../../assets/logo.png';
 import {
   imgStyle,
   infoContainerStyle,
@@ -17,15 +18,17 @@ import {
   headerStyle,
   teamsItemStyle,
   buttonStyle
-} from '../styles/HomeScreen.styles';
+} from '../../styles/HomeScreen.styles';
 
-import { ThemeSelector } from '../theming/ThemeSelector';
-import { localStorageAvailable } from '../utils/localStorage';
-import { getDisplayNameFromLocalStorage, saveDisplayNameToLocalStorage } from '../utils/localStorage';
-import { DisplayNameField } from './DisplayNameField';
+import { ThemeSelector } from '../../theming/ThemeSelector';
+import { localStorageAvailable } from '../../utils/localStorage';
+import { getDisplayNameFromLocalStorage, saveDisplayNameToLocalStorage } from '../../utils/localStorage';
+import { DisplayNameField } from '../DisplayNameField';
 import { TeamsMeetingLinkLocator } from '@azure/communication-calling';
 
 import { CallAdapterLocator } from '@azure/communication-react';
+
+import { StyledTextFieldContainer, Containerbox, ContainerButton } from './style'
 
 export interface HomeScreenProps {
   startCallHandler(callDetails: {
@@ -36,17 +39,16 @@ export interface HomeScreenProps {
 }
 
 export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
-  // const imageProps = { src: heroSVG.toString() };
-  const headerTitle = props.joiningExistingCall ? 'Join Call' : 'Start or join a call';
-  const callOptionsGroupLabel = 'Select a call option';
-  const buttonText = 'Next';
+  const headerTitle = props.joiningExistingCall ? 'Participar da chamada' : 'Iniciar ou participar de uma chamada';
+  const callOptionsGroupLabel = 'Selecione uma opção de chamada';
+  const buttonText = 'Começar';
   const callOptions: IChoiceGroupOption[] = [
-    { key: 'ACSCall', text: 'Start a call' },
+    { key: 'ACSCall', text: 'Iniciar a chamada' },
 
-    { key: 'TeamsMeeting', text: 'Join a Teams meeting using ACS identity' }
+    { key: 'TeamsMeeting', text: 'Participe de uma reunião do Teams usando a identidade ACS' }
   ];
 
-  // Get display name from local storage if available
+
   const defaultDisplayName = localStorageAvailable ? getDisplayNameFromLocalStorage() : null;
   const [displayName, setDisplayName] = useState<string | undefined>(defaultDisplayName ?? undefined);
 
@@ -67,13 +69,16 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
       horizontalAlign="center"
       verticalAlign="center"
       tokens={containerTokens}
-      className={containerStyle}
+      className='containerStyle'
     >
-      <Image alt="Welcome to the ACS Calling sample app" className={imgStyle}  />
+      <Image src={"/logo.png"} alt={"Minha Imagem"} width={500} 
+        height={200} />
       <Stack className={infoContainerStyle}>
-        <Text role={'heading'} aria-level={1} className={headerStyle}>
-          {headerTitle}
-        </Text>
+      <Containerbox>
+          <Text role={'heading'} aria-level={1} className='headerStyle'>
+            {headerTitle}
+          </Text>
+        </Containerbox>
         <Stack className={configContainerStyle} tokens={configContainerStackTokens}>
           <Stack tokens={callContainerStackTokens}>
             {!props.joiningExistingCall && (
@@ -88,37 +93,40 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
             )}
 
             {teamsCallChosen && (
+            <StyledTextFieldContainer>
               <TextField
-                className={teamsItemStyle}
-                iconProps={{ iconName: 'Link' }}
-                placeholder={'Enter a Teams meeting link'}
-                onChange={(_, newValue) => newValue && setCallLocator({ meetingLink: newValue })}
-              />
+              className='teamsItemStyle'
+              iconProps={{ iconName: 'Link' }}
+              placeholder={'Insira um link de reunião de equipes'}
+              onChange={(_, newValue) => newValue && setCallLocator({ meetingLink: newValue })}
+            />
+            </StyledTextFieldContainer> 
             )}
           </Stack>
           {showDisplayNameField && <DisplayNameField defaultName={displayName} setName={setDisplayName} />}
-          <PrimaryButton
-            disabled={!buttonEnabled}
-            className={buttonStyle}
-            text={buttonText}
-            onClick={() => {
-              if (displayName) {
-                displayName && saveDisplayNameToLocalStorage(displayName);
+          <ContainerButton>
+            <PrimaryButton
+              disabled={!buttonEnabled}
+              className='buttonStyle'
+              text={buttonText}
+              onClick={() => {
+                if (displayName) {
+                  displayName && saveDisplayNameToLocalStorage(displayName);
 
-                props.startCallHandler({
-                  //TODO: This needs to be updated after we change arg types of TeamsCall
-                  displayName: !displayName ? 'Teams UserName PlaceHolder' : displayName,
-                  callLocator: callLocator
-                });
-              }
-            }}
-          />
-
+                  props.startCallHandler({
+                    displayName: !displayName ? 'Teams UserName PlaceHolder' : displayName,
+                    callLocator: callLocator
+                  });
+                }
+              }}
+            />
+          </ContainerButton>
           <div>
-            <ThemeSelector label="Theme" horizontal={true} />
+            <ThemeSelector label="Tema" horizontal={true} />
           </div>
         </Stack>
       </Stack>
     </Stack>
+    
   );
 };
