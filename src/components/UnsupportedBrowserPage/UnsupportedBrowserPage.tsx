@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import React, { useEffect } from 'react';
-import { NoticePage } from './NoticePage';
+import { NoticePage } from '../NoticePage/NoticePage';
 
 export const UnsupportedBrowserPage = (): JSX.Element => {
   useEffect(() => {

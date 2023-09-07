@@ -3,7 +3,7 @@
 
 import { TextField } from '@fluentui/react';
 import React, { useState } from 'react';
-import { inputBoxStyle, inputBoxTextStyle, TextFieldStyleProps } from '../styles/DisplayNameField.styles';
+import { inputBoxStyle, inputBoxTextStyle, TextFieldStyleProps } from '../../styles/DisplayNameField.styles';
 
 interface DisplayNameFieldProps {
   setName(displayName: string): void;

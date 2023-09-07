@@ -3,7 +3,7 @@
 
 import { Link } from '@fluentui/react';
 import React, { useEffect } from 'react';
-import { NoticePage } from './NoticePage';
+import { NoticePage } from '../NoticePage/NoticePage';
 
 export const PageOpenInAnotherTab = (): JSX.Element => {
   useEffect(() => {

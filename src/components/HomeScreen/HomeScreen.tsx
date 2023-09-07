@@ -23,7 +23,7 @@ import {
 import { ThemeSelector } from '../../theming/ThemeSelector';
 import { localStorageAvailable } from '../../utils/localStorage';
 import { getDisplayNameFromLocalStorage, saveDisplayNameToLocalStorage } from '../../utils/localStorage';
-import { DisplayNameField } from '../DisplayNameField';
+import { DisplayNameField } from '../DisplayNameField/DisplayNameField';
 import { TeamsMeetingLinkLocator } from '@azure/communication-calling';
 
 import { CallAdapterLocator } from '@azure/communication-react';

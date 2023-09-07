@@ -18,10 +18,10 @@ import {
 import { useIsMobile } from '../utils/useIsMobile';
 import { useSecondaryInstanceCheck } from '../utils/useSecondaryInstanceCheck';
 import { CallError } from './CallError/CallError';
-import { CallScreen } from '../components/CallScreen';
+import { CallScreen } from './CallScreen/CallScreen';
 import { HomeScreen } from './HomeScreen/HomeScreen';
-import { PageOpenInAnotherTab } from '../components/PageOpenInAnotherTab';
-import { UnsupportedBrowserPage } from '../components/UnsupportedBrowserPage';
+import { PageOpenInAnotherTab } from './PageOpenInAnotherTab/PageOpenInAnotherTab';
+import { UnsupportedBrowserPage } from './UnsupportedBrowserPage/UnsupportedBrowserPage';
 
 setLogLevel('verbose');
 
