@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import { CommonCallAdapter, CallComposite } from '@azure/communication-react';
 
 import { Spinner } from '@fluentui/react';
@@ -17,9 +14,6 @@ export const CallCompositeContainer = (props: CallCompositeContainerProps): JSX.
   const { currentTheme, currentRtl } = useSwitchableFluentTheme();
   const isMobileSession = useIsMobile();
 
-  // Dispose of the adapter in the window's before unload event.
-  // This ensures the service knows the user intentionally left the call if the user
-  // closed the browser tab during an active call.
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const disposeAdapter = (): void => adapter?.dispose();

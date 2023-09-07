@@ -1,13 +1,8 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
-import { Link } from '@fluentui/react';
 import React, { useEffect } from 'react';
 import { NoticePage } from './NoticePage';
 
 export const PageOpenInAnotherTab = (): JSX.Element => {
   useEffect(() => {
-    // Verificar se estamos no lado do cliente antes de acessar window
     if (typeof window !== 'undefined') {
       window.document.title = 'App already open in another tab';
     }

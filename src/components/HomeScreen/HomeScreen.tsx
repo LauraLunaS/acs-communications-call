@@ -1,24 +1,13 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-/* eslint-disable */
-
 import React, { useState } from 'react';
 import { Stack, PrimaryButton, ChoiceGroup, IChoiceGroupOption, Text, TextField } from '@fluentui/react';
 import Image from 'next/image';
-import logo from '../../assets/logo.png';
 import {
-  imgStyle,
-  infoContainerStyle,
   callContainerStackTokens,
   callOptionsGroupStyles,
-  configContainerStyle,
   configContainerStackTokens,
-  containerStyle,
-  containerTokens,
-  headerStyle,
-  teamsItemStyle,
-  buttonStyle
-} from '../../styles/HomeScreen.styles';
+  containerTokens
+} 
+from '../../styles/HomeScreen.styles';
 
 import { ThemeSelector } from '../../theming/ThemeSelector';
 import { localStorageAvailable } from '../../utils/localStorage';
@@ -28,7 +17,13 @@ import { TeamsMeetingLinkLocator } from '@azure/communication-calling';
 
 import { CallAdapterLocator } from '@azure/communication-react';
 
-import { StyledTextFieldContainer, Containerbox, ContainerButton } from './style'
+import { 
+   StyledTextFieldContainer,
+   Containerbox, 
+   ContainerButton, 
+   ContainerTheme, 
+   Container 
+} from './style'
 
 export interface HomeScreenProps {
   startCallHandler(callDetails: {
@@ -63,70 +58,72 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
   const showDisplayNameField = true;
 
   return (
-    <Stack
-      horizontal
-      wrap
-      horizontalAlign="center"
-      verticalAlign="center"
-      tokens={containerTokens}
-      className='containerStyle'
-    >
-      <Image src={"/logo.png"} alt={"Minha Imagem"} width={500} 
-        height={200} />
-      <Stack className={infoContainerStyle}>
-      <Containerbox>
-          <Text role={'heading'} aria-level={1} className='headerStyle'>
-            {headerTitle}
-          </Text>
-        </Containerbox>
-        <Stack className={configContainerStyle} tokens={configContainerStackTokens}>
-          <Stack tokens={callContainerStackTokens}>
-            {!props.joiningExistingCall && (
-              <ChoiceGroup
-                styles={callOptionsGroupStyles}
-                label={callOptionsGroupLabel}
-                defaultSelectedKey="ACSCall"
-                options={callOptions}
-                required={true}
-                onChange={(_, option) => option && setChosenCallOption(option)}
+    <Container>
+      <Stack
+        horizontal
+        wrap
+        horizontalAlign="center"
+        verticalAlign="center"
+        tokens={containerTokens}
+        className='containerStyle'
+      >
+        <Image src={"/assets/logo.png"} alt={"Minha Imagem"} width={500} 
+          height={200} className='imageLogo'/>
+        <Stack className='infoContainerStyle'>
+        <Containerbox>
+            <Text role={'heading'} aria-level={1} className='headerStyle'>
+              {headerTitle}
+            </Text>
+          </Containerbox>
+          <Stack className='configContainerStyle' tokens={configContainerStackTokens}>
+            <Stack tokens={callContainerStackTokens}>
+              {!props.joiningExistingCall && (
+                <ChoiceGroup
+                  styles={callOptionsGroupStyles}
+                  label={callOptionsGroupLabel}
+                  defaultSelectedKey="ACSCall"
+                  options={callOptions}
+                  required={true}
+                  onChange={(_, option) => option && setChosenCallOption(option)}
+                  className='choiceGroup'
+                />
+              )}
+
+              {teamsCallChosen && (
+              <StyledTextFieldContainer>
+                <TextField
+                className='teamsItemStyle'
+                iconProps={{ iconName: 'Link' }}
+                placeholder={'Insira um link de reunião de equipes'}
+                onChange={(_, newValue) => newValue && setCallLocator({ meetingLink: newValue })}
               />
-            )}
+              </StyledTextFieldContainer> 
+              )}
+            </Stack>
+            {showDisplayNameField && <DisplayNameField defaultName={displayName} setName={setDisplayName} />}
+            <ContainerButton>
+              <PrimaryButton
+                disabled={!buttonEnabled}
+                className='buttonStyle'
+                text={buttonText}
+                onClick={() => {
+                  if (displayName) {
+                    displayName && saveDisplayNameToLocalStorage(displayName);
 
-            {teamsCallChosen && (
-            <StyledTextFieldContainer>
-              <TextField
-              className='teamsItemStyle'
-              iconProps={{ iconName: 'Link' }}
-              placeholder={'Insira um link de reunião de equipes'}
-              onChange={(_, newValue) => newValue && setCallLocator({ meetingLink: newValue })}
-            />
-            </StyledTextFieldContainer> 
-            )}
+                    props.startCallHandler({
+                      displayName: !displayName ? 'Teams UserName PlaceHolder' : displayName,
+                      callLocator: callLocator
+                    });
+                  }
+                }}
+              />
+            </ContainerButton>
+            <ContainerTheme>
+              <ThemeSelector label="Tema" horizontal={true} className='themeStyle'/>
+            </ContainerTheme>
           </Stack>
-          {showDisplayNameField && <DisplayNameField defaultName={displayName} setName={setDisplayName} />}
-          <ContainerButton>
-            <PrimaryButton
-              disabled={!buttonEnabled}
-              className='buttonStyle'
-              text={buttonText}
-              onClick={() => {
-                if (displayName) {
-                  displayName && saveDisplayNameToLocalStorage(displayName);
-
-                  props.startCallHandler({
-                    displayName: !displayName ? 'Teams UserName PlaceHolder' : displayName,
-                    callLocator: callLocator
-                  });
-                }
-              }}
-            />
-          </ContainerButton>
-          <div>
-            <ThemeSelector label="Tema" horizontal={true} />
-          </div>
         </Stack>
       </Stack>
-    </Stack>
-    
+    </Container>
   );
 };

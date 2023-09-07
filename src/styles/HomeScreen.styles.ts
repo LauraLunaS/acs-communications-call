@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import { IStackTokens, mergeStyles } from '@fluentui/react';
 
 export const imgStyle = mergeStyles({
@@ -20,8 +17,8 @@ export const infoContainerStyle = mergeStyles({
 export const containerStyle = mergeStyles({
   height: '100%',
   width: '100% ',
-  padding: '2rem', //half childrenGap from Stack
-  minWidth: '24rem', // max of min-width from stack items + padding * 2 = 20 + 2 * 2
+  padding: '2rem', 
+  minWidth: '24rem', 
   minHeight: 'auto'
 });
 export const configContainerStyle = mergeStyles({

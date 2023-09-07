@@ -4,6 +4,7 @@
 import { mergeStyles } from '@fluentui/react';
 
 export const TextFieldStyleProps = {
+color: 'black',
   fieldGroup: {
     height: '2.3rem'
   }
@@ -11,7 +12,8 @@ export const TextFieldStyleProps = {
 
 export const inputBoxStyle = mergeStyles({
   boxSizing: 'border-box',
-  borderRadius: '0.125rem'
+  borderRadius: '1rem',
+  color: 'black'
 });
 
 export const inputBoxTextStyle = mergeStyles({

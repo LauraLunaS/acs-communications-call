@@ -1,12 +1,7 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import React, { ReactNode } from 'react';
 import { IStyle, IStackTokens, mergeStyles, Stack, Text } from '@fluentui/react';
 
-/**
- * Generic page with a title and more details text for serving up a notice to the user.
- */
+
 export const NoticePage = (props: { title: string; moreDetails?: ReactNode; icon?: ReactNode }): JSX.Element => (
   <Stack verticalFill verticalAlign="center" horizontalAlign="center">
     <Stack className={mergeStyles(containerStyle)} tokens={containerItemGap}>

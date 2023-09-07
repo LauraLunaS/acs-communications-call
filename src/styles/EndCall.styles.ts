@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import { IButtonStyles, IStackTokens, mergeStyles } from '@fluentui/react';
 
 export const mainStackTokens: IStackTokens = {
@@ -18,8 +15,8 @@ export const bottomStackTokens: IStackTokens = {
 export const endCallContainerStyle = mergeStyles({
   height: '100%',
   width: '100% ',
-  padding: '0.5rem', //half childrenGap from Stack
-  minWidth: '21.625rem', // max of min-width from stack items + padding * 2 = 20.625 + 0.5 * 2
+  padding: '0.5rem', 
+  minWidth: '21.625rem', 
   minHeight: 'auto'
 });
 export const endCallTitleStyle = mergeStyles({

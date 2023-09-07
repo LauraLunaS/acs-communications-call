@@ -5,20 +5,16 @@ import React from 'react';
 import { ChoiceGroup, IChoiceGroupOption, concatStyleSets } from '@fluentui/react';
 import { useSwitchableFluentTheme } from '../theming/SwitchableFluentThemeProvider';
 
-/**
- * Props for ThemeSelector component
- */
 export interface ThemeSelectorProps {
-  /** Optional label for selector component */
   label?: string;
-  /** Optional boolean to arrange choices horizontally */
   horizontal?: boolean;
+  className?: string;
 }
 
 /**
- * @description ChoiceGroup component for selecting the fluent theme context for SwitchableFluentThemeProvider
- * @param props - ThemeSelectorProps
- * @remarks - this must be a child of a SwitchableFluentThemeProvider
+ * @description 
+ * @param 
+ * @remarks 
  */
 export const ThemeSelector = (props: ThemeSelectorProps): JSX.Element => {
   const { label, horizontal } = props;

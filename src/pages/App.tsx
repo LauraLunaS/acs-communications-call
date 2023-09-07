@@ -32,16 +32,15 @@ type AppPages = 'home' | 'call';
 const App = (): JSX.Element => {
   const [page, setPage] = useState<AppPages>('home');
 
-  // User credentials to join a call with - these are retrieved from the server
+  
   const [token, setToken] = useState<string>();
   const [userId, setUserId] = useState<CommunicationUserIdentifier>();
   const [userCredentialFetchError, setUserCredentialFetchError] = useState<boolean>(false);
 
-  // Call details to join a call - these are collected from the user on the home screen
+  
   const [callLocator, setCallLocator] = useState<CallAdapterLocator>(createGroupId());
   const [displayName, setDisplayName] = useState<string>('');
 
-  // Get Azure Communications Service token from the server
   useEffect(() => {
     (async () => {
       try {

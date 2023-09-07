@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const ContainerText = styled.div`
+export const Container = styled.div`
+  .endCallContainerStyle {
+    margin-top: 1rem;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+  }
   .endCallTitleStyle {
     color: #4A90A7;
     font-weight: bold;

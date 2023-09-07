@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import { TextField } from '@fluentui/react';
 import React, { useState } from 'react';
 import { inputBoxStyle, inputBoxTextStyle, TextFieldStyleProps } from '../../styles/DisplayNameField.styles';

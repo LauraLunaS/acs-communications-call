@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import { AzureCommunicationTokenCredential, CommunicationUserIdentifier } from '@azure/communication-common';
 
 import {
@@ -31,8 +28,6 @@ export const CallScreen = (props: CallScreenProps): JSX.Element => {
 
   const subscribeAdapterEvents = useCallback((adapter: CommonCallAdapter) => {
     adapter.on('error', (e) => {
-      // Error is already acted upon by the Call composite, but the surrounding application could
-      // add top-level error handling logic here (e.g. reporting telemetry).
       console.log('Adapter error event:', e);
     });
     adapter.onStateChange((state: CallAdapterState) => {
