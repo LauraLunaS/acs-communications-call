@@ -46,7 +46,7 @@ export const CallError = (props: CallErrorProps): JSX.Element => {
               />
             </ContainerButton>
             <DefaultButton
-              className='buttonStyle'
+              className='buttonStyleHomePage'
               styles={buttonWithIconStyles}
               text={goHomePage}
               onClick={props.homeHandler}

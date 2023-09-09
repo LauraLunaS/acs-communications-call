@@ -1,7 +1,6 @@
 import { CommonCallAdapter, CallComposite } from '@azure/communication-react';
 
 import { Spinner } from '@fluentui/react';
-import { useSwitchableFluentTheme } from '../../theming/SwitchableFluentThemeProvider';
 import { useIsMobile } from '../../utils/useIsMobile';
 import React, { useEffect } from 'react';
 
@@ -11,7 +10,7 @@ export type CallCompositeContainerProps = CallScreenProps & { adapter?: CommonCa
 
 export const CallCompositeContainer = (props: CallCompositeContainerProps): JSX.Element => {
   const { adapter } = props;
-  const { currentTheme, currentRtl } = useSwitchableFluentTheme();
+  //const { currentTheme, currentRtl } = useSwitchableFluentTheme();
   const isMobileSession = useIsMobile();
 
   useEffect(() => {
@@ -31,8 +30,6 @@ export const CallCompositeContainer = (props: CallCompositeContainerProps): JSX.
   return (
     <CallComposite
       adapter={adapter}
-      fluentTheme={currentTheme.theme}
-      rtl={currentRtl}
       callInvitationUrl={callInvitationUrl}
       formFactor={isMobileSession ? 'mobile' : 'desktop'}
     />

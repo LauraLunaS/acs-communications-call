@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Stack, PrimaryButton, ChoiceGroup, IChoiceGroupOption, Text, TextField } from '@fluentui/react';
-import Image from 'next/image';
 import {
   callContainerStackTokens,
   callOptionsGroupStyles,
@@ -9,7 +8,6 @@ import {
 } 
 from '../../styles/HomeScreen.styles';
 
-import { ThemeSelector } from '../../theming/ThemeSelector';
 import { localStorageAvailable } from '../../utils/localStorage';
 import { getDisplayNameFromLocalStorage, saveDisplayNameToLocalStorage } from '../../utils/localStorage';
 import { DisplayNameField } from '../DisplayNameField/DisplayNameField';
@@ -17,13 +15,10 @@ import { TeamsMeetingLinkLocator } from '@azure/communication-calling';
 
 import { CallAdapterLocator } from '@azure/communication-react';
 
-import { 
-   StyledTextFieldContainer,
-   Containerbox, 
-   ContainerButton, 
-   ContainerTheme, 
+import {
    Container 
 } from './style'
+import NavBar from '../NavBar'
 
 export interface HomeScreenProps {
   startCallHandler(callDetails: {
@@ -40,7 +35,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
   const callOptions: IChoiceGroupOption[] = [
     { key: 'ACSCall', text: 'Iniciar a chamada' },
 
-    { key: 'TeamsMeeting', text: 'Participe de uma reunião do Teams usando a identidade ACS' }
+    { key: 'TeamsMeeting', text: 'Participe de uma reunião usando um link' }
   ];
 
 
@@ -59,6 +54,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
 
   return (
     <Container>
+      <NavBar />
       <Stack
         horizontal
         wrap
@@ -67,14 +63,13 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
         tokens={containerTokens}
         className='containerStyle'
       >
-        <Image src={"/assets/logo.png"} alt={"Minha Imagem"} width={500} 
-          height={200} className='imageLogo'/>
         <Stack className='infoContainerStyle'>
-        <Containerbox>
-            <Text role={'heading'} aria-level={1} className='headerStyle'>
+            <Text role={'heading'} className='headerStyle'>
               {headerTitle}
             </Text>
-          </Containerbox>
+            <Text  className='subtitleStyle'>
+            Conecte-se e compartilhe de qualquer lugar sobre seu paciente com a Aicury.
+            </Text>
           <Stack className='configContainerStyle' tokens={configContainerStackTokens}>
             <Stack tokens={callContainerStackTokens}>
               {!props.joiningExistingCall && (
@@ -90,18 +85,16 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
               )}
 
               {teamsCallChosen && (
-              <StyledTextFieldContainer>
                 <TextField
                 className='teamsItemStyle'
                 iconProps={{ iconName: 'Link' }}
                 placeholder={'Insira um link de reunião de equipes'}
                 onChange={(_, newValue) => newValue && setCallLocator({ meetingLink: newValue })}
               />
-              </StyledTextFieldContainer> 
               )}
             </Stack>
             {showDisplayNameField && <DisplayNameField defaultName={displayName} setName={setDisplayName} />}
-            <ContainerButton>
+
               <PrimaryButton
                 disabled={!buttonEnabled}
                 className='buttonStyle'
@@ -117,10 +110,7 @@ export const HomeScreen = (props: HomeScreenProps): JSX.Element => {
                   }
                 }}
               />
-            </ContainerButton>
-            <ContainerTheme>
-              <ThemeSelector label="Tema" horizontal={true} className='themeStyle'/>
-            </ContainerTheme>
+
           </Stack>
         </Stack>
       </Stack>

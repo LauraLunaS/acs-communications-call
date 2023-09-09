@@ -1,15 +1,17 @@
 import React, { ReactNode } from 'react';
 import { IStyle, IStackTokens, mergeStyles, Stack, Text } from '@fluentui/react';
-
+import { Container } from './style'
 
 export const NoticePage = (props: { title: string; moreDetails?: ReactNode; icon?: ReactNode }): JSX.Element => (
-  <Stack verticalFill verticalAlign="center" horizontalAlign="center">
-    <Stack className={mergeStyles(containerStyle)} tokens={containerItemGap}>
-      {props.icon && <Text className={mergeStyles(titleStyles)}>{props.icon}</Text>}
-      <Text className={mergeStyles(titleStyles)}>{props.title}</Text>
-      <Text className={mergeStyles(moreDetailsStyles)}>{props.moreDetails}</Text>
+  <Container>
+    <Stack verticalFill verticalAlign="center" horizontalAlign="center">
+      <Stack className={mergeStyles(containerStyle)} tokens={containerItemGap}>
+        {props.icon && <Text className={mergeStyles(titleStyles)}>{props.icon}</Text>}
+        <Text className='title'>{props.title}</Text>
+        <Text className='subtitle'>{props.moreDetails}</Text>
+      </Stack>
     </Stack>
-  </Stack>
+  </Container>
 );
 
 const containerStyle: IStyle = {
@@ -23,9 +25,7 @@ const containerItemGap: IStackTokens = {
 
 const titleStyles: IStyle = {
   fontSize: '1.25rem',
-  fontWeight: 600
+  fontWeight: 600,
 };
 
-const moreDetailsStyles: IStyle = {
-  fontSize: '1rem'
-};
+
