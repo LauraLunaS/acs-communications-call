@@ -1,6 +1,6 @@
 
 import React from 'react'
-
+import { GlobalStyle } from "../styles/global";
 import dynamic from 'next/dynamic'
 
 const DynamicComponentWithNoSSR = dynamic(
@@ -10,7 +10,10 @@ const DynamicComponentWithNoSSR = dynamic(
 
 const Home = () => {
   return (
-    <DynamicComponentWithNoSSR />
+    <>
+      <GlobalStyle />
+      <DynamicComponentWithNoSSR />
+    </>
   )
 }
 

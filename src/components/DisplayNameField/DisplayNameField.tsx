@@ -15,8 +15,8 @@ const DISPLAY_NAME_MAX_CHARS = 256;
 const TEXTFIELD_LABEL = 'Nome';
 const TEXTFIELD_ID = 'displayName';
 const TEXTFIELD_PLACEHOLDER = 'Insira seu nome';
-const TEXTFIELD_EMPTY_ERROR_MSG = 'Name cannot be empty';
-const TEXTFIELD_EXCEEDS_MAX_CHARS = `Name cannot exceed ${DISPLAY_NAME_MAX_CHARS} characters`;
+const TEXTFIELD_EMPTY_ERROR_MSG = 'O nome não pode ficar vazio';
+const TEXTFIELD_EXCEEDS_MAX_CHARS = `O nome não pode exceder ${DISPLAY_NAME_MAX_CHARS} characters`;
 
 const hasValidLength = (name: string): boolean => {
   return name.length <= DISPLAY_NAME_MAX_CHARS;

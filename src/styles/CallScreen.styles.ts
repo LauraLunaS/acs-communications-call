@@ -24,7 +24,7 @@ export const subContainerStyles: IStackStyles = {
 };
 export const paneStyles: IStackItemStyles = {
   root: {
-    width: '17.875rem'
+    width: '30rem'
   }
 };
 export const activeContainerClassName: IStackItemStyles = {

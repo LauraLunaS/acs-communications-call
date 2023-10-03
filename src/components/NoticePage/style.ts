@@ -14,7 +14,7 @@ export const Container = styled.div`
     }
     
     @media screen and (min-width: 1025px) and (max-width: 1920px) {
-        .title {
+    .title {
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
         font-size: 1.3rem;

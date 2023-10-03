@@ -77,7 +77,7 @@ const AzureCommunicationCallScreen = (props: AzureCommunicationCallScreenProps):
     afterCreate
   );
 
-  return <CallCompositeContainer {...props} adapter={adapter} />;
+  return  <CallCompositeContainer {...props} adapter={adapter} />;
 };
 
 const convertPageStateToString = (state: CallAdapterState): string => {

@@ -7,12 +7,10 @@ import {
   containerTokens
 } 
 from '../../styles/HomeScreen.styles';
-
 import { localStorageAvailable } from '../../utils/localStorage';
 import { getDisplayNameFromLocalStorage, saveDisplayNameToLocalStorage } from '../../utils/localStorage';
 import { DisplayNameField } from '../DisplayNameField/DisplayNameField';
 import { TeamsMeetingLinkLocator } from '@azure/communication-calling';
-
 import { CallAdapterLocator } from '@azure/communication-react';
 
 import {

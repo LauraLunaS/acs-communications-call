@@ -11,8 +11,8 @@ import {
 
 import React from 'react';
 
-const invitePeopleString = 'Invite people to join';
-const copyJoinInfoString = 'Copy join info';
+const invitePeopleString = 'Convide pessoas para participar';
+const copyJoinInfoString = 'Copiar link';
 
 const copyJoinLink = (): void => {
   const inputElement = document.getElementById('inputText') as HTMLInputElement;
